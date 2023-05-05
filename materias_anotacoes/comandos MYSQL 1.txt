@@ -1,0 +1,98 @@
+Comandos  MySQL
+
+Exibir banco de dados;
+show databases
+
+//Criar banco de dados
+create database cadastro;
+
+//Excluir banco de dados;
+drop database kiko;
+drop database etec;
+
+//Entrar no banco de dados cadastro;
+use cadastro;
+
+//Exibi tabelas;
+show tables;
+
+//describe ou descrição de tabela;
+desc hospital;
+
+
+//adicionar chave, atributo na tabela;
+alter table bebe add column id_hospital int not null;
+
+//adicionar chave estrangeira na tabela;
+alter table bebe add foreign key (id_hospital) references hospital (id_hospital);
+
+//alterar nome de tabela
+alter table bebe rename to bebes;
+
+//adicionar chave primaria na tabela mae
+alter table mae add primary key (id_mae);
+
+//Excluir chave primary na tabela mae;
+alter table mae drop primary key (id_mae);
+
+//Excluir coluna na tabela
+alter table mae  drop column rg;
+
+
+//Adicionar coluna na tabela;
+alter table mae add column rg int not null;
+
+create table hospital(
+id_hospital int not null,
+nome varchar (50) not null,
+cnpj int (14) not null,
+diretor varchar (50) not null,
+primary key (id_hospital)
+);
+
+desc ou describe;
+
+create table bebe(
+id_bebe int not null,
+nome varchar (50) not null,
+data_nascimento date not null,
+peso double not null,
+altura double not null,
+id_hospital int not null,
+primary key (id_bebe),
+foreign key (id_hospital) references hospital (id_hospital)
+);
+
+
+create table mae(
+nome varchar (50) not null,
+data_nascimento date not null,
+rg varchar (13) not null,
+id_mae int not null,
+primary key (id_mae),
+id_medico int not null,
+foreign key (id_medico) references medico (id_medico)
+);
+
+
+
+create table medico(
+crm int not null,
+nome varchar (30) not null,
+especialidade varchar (30) not null,
+id_medico int not null,
+primary key (id_medico)
+);
+
+create table endereco(
+id_end int not null,
+rua varchar (40) not null,
+numero varchar (4) not null,
+bairro varchar (40) not null,
+cep char (8) not null,
+cidade varchar (40) not null,
+Estado char (2) not null,
+primary key (id_end)
+);
+
+desc bebe;
